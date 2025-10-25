@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"html/template"
+	"io"
 	"net/http"
 
 	_ "github.com/lib/pq" // важно: импорт драйвера
@@ -37,7 +38,12 @@ func MainHandler(db *sql.DB) http.HandlerFunc {
 }
 func AddNewItem(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-
+		body, err := io.ReadAll(r.Body)
+		if err != nil {
+			w.Write([]byte(err.Error()))
+			return
+		}
+		fmt.Println(string(body))
 	}
 }
 func main() {
