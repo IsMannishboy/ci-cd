@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"html/template"
+	"io"
 	"net/http"
 
 	_ "github.com/lib/pq" // важно: импорт драйвера
@@ -35,6 +36,16 @@ func MainHandler(db *sql.DB) http.HandlerFunc {
 
 	}
 }
+func AddNewItem(db *sql.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		body, err := io.ReadAll(r.Body)
+		if err != nil {
+			w.Write([]byte(err.Error()))
+			return
+		}
+		fmt.Println(string(body))
+	}
+}
 func main() {
 	connStr := "postgres://21savgae:1234@localhost:5432/mydb?sslmode=disable"
 	db, err := sql.Open("postgres", connStr)
@@ -52,5 +63,5 @@ func main() {
 	}
 	fmt.Println("starting server")
 	http.HandleFunc("/main", MainHandler(db))
-
+	http.HandleFunc("/add", AddNewItem(db))
 }
