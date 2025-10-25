@@ -8,7 +8,7 @@ on:
   push:
     branches: [ "dev" ]
     paths:
-      - "app/main**"
+      - 'app/main**'
       
   
 
