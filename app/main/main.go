@@ -50,7 +50,7 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-
+	fmt.Println("starting server")
 	http.HandleFunc("/main", MainHandler(db))
 
 }
