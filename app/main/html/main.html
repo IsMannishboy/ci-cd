@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>List</title>
+            </head>
+            <body>
+                <h1>Список из базы данных</h1>
+                <ul>
+                    {{range .}}
+                        <li>{{.}}</li>
+                    {{else}}
+                        <li><i>Нет данных</i></li>
+                    {{end}}
+                </ul>
+            </body>
+            </html>
