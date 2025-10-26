@@ -52,8 +52,10 @@ func AddNewItem(db *sql.DB) http.HandlerFunc {
 		}
 	}
 }
-func DeleteItem() {
+func DeleteItem() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
 
+	}
 }
 func main() {
 	connStr := "postgres://21savgae:1234@localhost:5432/mydb?sslmode=disable"
