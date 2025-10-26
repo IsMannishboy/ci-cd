@@ -44,7 +44,16 @@ func AddNewItem(db *sql.DB) http.HandlerFunc {
 			return
 		}
 		fmt.Println(string(body))
+		_, err = db.Exec(`insert into list (namee) values ($1)`, string(body))
+		if err != nil {
+			fmt.Println("err:", err)
+			w.Write([]byte(err.Error()))
+			return
+		}
 	}
+}
+func DeleteItem() {
+
 }
 func main() {
 	connStr := "postgres://21savgae:1234@localhost:5432/mydb?sslmode=disable"
