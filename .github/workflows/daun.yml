@@ -1,11 +1,11 @@
-name: test pipeline
+name: main-test pipeline
 
 on:
   push:
     branches:
       - dev
     paths:
-      - "app/**"
+      - "app/main/**"
 
 
 jobs:
@@ -16,5 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: hello world
-      run: echo "hello world"
+    - name: Build image
+      run: docker compose up
+    - name: Tests
+      run: docker exec main go test ./...
+    
