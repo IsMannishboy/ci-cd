@@ -2,7 +2,8 @@ name: test pipeline
 
 on:
   push:
-    branches: [ "dev" ]
+    branches:
+      - dev
 
 
 jobs:
