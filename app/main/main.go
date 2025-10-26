@@ -54,7 +54,12 @@ func AddNewItem(db *sql.DB) http.HandlerFunc {
 }
 func DeleteItem(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-
+		body, err := io.ReadAll(r.Body)
+		if err != nil {
+			fmt.Println("err:", err.Error())
+			return
+		}
+		fmt.Println(body)
 	}
 }
 func main() {
