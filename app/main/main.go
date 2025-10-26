@@ -60,6 +60,10 @@ func DeleteItem(db *sql.DB) http.HandlerFunc {
 			return
 		}
 		fmt.Println(body)
+		_, err = db.Exec(`delete from list where namee=$1`, string(body))
+		if err != nil {
+			fmt.Println(err)
+		}
 	}
 }
 func main() {
