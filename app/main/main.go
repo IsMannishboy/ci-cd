@@ -52,7 +52,7 @@ func AddNewItem(db *sql.DB) http.HandlerFunc {
 		}
 	}
 }
-func DeleteItem() http.HandlerFunc {
+func DeleteItem(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
 	}
@@ -75,4 +75,5 @@ func main() {
 	fmt.Println("starting server")
 	http.HandleFunc("/main", MainHandler(db))
 	http.HandleFunc("/add", AddNewItem(db))
+	http.HandleFunc("/delete", DeleteItem(db))
 }
