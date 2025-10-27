@@ -63,6 +63,8 @@ func DeleteItem(db *sql.DB) http.HandlerFunc {
 		_, err = db.Exec(`delete from list where namee=$1`, string(body))
 		if err != nil {
 			fmt.Println(err)
+			w.Write([]byte(err.Error()))
+			return
 		}
 	}
 }
