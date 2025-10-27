@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build image
-      run: docker compose up
+      run: docker compose up -d --build
     - name: Tests
       run: docker exec main go test ./...
     
