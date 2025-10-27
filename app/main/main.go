@@ -66,6 +66,8 @@ func DeleteItem(db *sql.DB) http.HandlerFunc {
 			w.Write([]byte(err.Error()))
 			return
 		}
+		w.Write([]byte("ok"))
+
 	}
 }
 func main() {
