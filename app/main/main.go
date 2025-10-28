@@ -85,7 +85,7 @@ func main() {
 	if err != nil {
 		fmt.Println("Ping:", err)
 	}
-	fmt.Println("starting server")
+	fmt.Println("starting server on :80")
 	http.HandleFunc("/main", MainHandler(db))
 	http.HandleFunc("/add", AddNewItem(db))
 	http.HandleFunc("/delete", DeleteItem(db))
