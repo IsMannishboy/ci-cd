@@ -5,33 +5,42 @@ services:
     image: postgres
     container_name: mydb
     environment:
-      POSTGRES_USER: 21savgae
+      POSTGRES_USER: 21savage
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: mydb
     ports:
       - "5432:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
+    networks:
+      - daun-net
 
   main:
-    build: ./app/main  # здесь путь к твоему Dockerfile для Go
+    build: ./app/main  
     image: main:latest
     container_name: main
     depends_on:
       - db
-   
+    volumes:
+      - /home/savage21/hardWork/go/ci_cd/app/main:/app/main
     ports:
-      - ":8080"
+      - ":80"
+    networks:
+      - daun-net
 
   nginx:
-    build: ./app/nginx  # здесь путь к Dockerfile nginx
+    build: ./app/nginx  
     container_name: nginx
     depends_on:
       - main
     ports:
       - "80:80"
-    volumes:
-      - ./app/nginx/nginx.conf:/etc/nginx/conf.d:ro
+   
+    networks:
+      - daun-net
 
+networks:
+  daun-net:
+    driver: bridge
 volumes:
   pg_data:
