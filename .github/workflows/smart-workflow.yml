@@ -3,6 +3,8 @@ name: Smart CI/CD
 on:
   pull_request:
     branches: [ "main" ]
+    paths:
+     - "app/**"
 
 jobs:
   main-job:
